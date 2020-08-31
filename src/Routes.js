@@ -8,13 +8,13 @@ class Routes extends React.Component {
     return (
       <Switch>
         <Redirect exact from="/" to="/dashboard" />
-        <WsbRoute path='/dashboard' component={pages.DashboardPage} />
-        <WsbRoute path='/events' component={pages.EventsPage} />
-        <WsbRoute path='/history_events' component={pages.HistoryEvent} />
-        <WsbRoute path='/checkpoints' component={pages.CheckpointPage} />
-        <WsbRoute path='/drivers' component={pages.DriversPage} />
-        <WsbRoute path='/units' component={pages.UnitsPage} />
-        
+        <WsbRoute title="Dashboard" path='/dashboard' component={pages.DashboardPage} />
+        <WsbRoute title="Eventos" path='/events' component={pages.EventsPage} />
+        <WsbRoute title="Historico" path='/history_events' component={pages.HistoryEvent} />
+        <WsbRoute title="Checkpoint" path='/checkpoints' component={pages.CheckpointPage} />
+        <WsbRoute title="Conductores" path='/drivers' component={pages.DriversPage} />
+        <WsbRoute title="Unidades" path='/units' component={pages.UnitsPage} />
+
         {/* 
         <Route path='*' component={pages.NotFound}></Route>
         */}

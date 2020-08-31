@@ -198,20 +198,6 @@ main {
   .page-footer{
     margin-left: 0px;
   }
-  
-  .card.cascading-admin-card {
-    margin-top: 2.5rem;
-  } 
-}
-
-@media (max-width: 576px) { 
-  .card.cascading-admin-card {
-    margin-top: 2.5rem;
-  }
-
-  #breadcrumb{
-    flex-direction: column;
-  }
 }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Routes from './Routes';
-import {  Router as BrowserRouter } from "react-router-dom"
+import {  BrowserRouter } from "react-router-dom"
 import { createBrowserHistory as appHistory } from "history"
 import './index.css';
 

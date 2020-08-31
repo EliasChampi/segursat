@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 const WsbRoute = (props) => {
 
-    const { isAuthenticated, component: Component, ...rest } = props;
+    const { isAuthenticated, component: Component, title, ...rest } = props;
     return (
         <Route {...rest} render={(matchProps) => {
             if (isAuthenticated) {
-                return <MainLayout>
+                return <MainLayout title={title}>
                     <Component {...matchProps} />
                 </MainLayout>
             }
@@ -25,6 +25,7 @@ WsbRoute.defaultProps = {
 WsbRoute.propTypes = {
     isAuthenticated: PropTypes.bool,
     component: PropTypes.any.isRequired,
+    title: PropTypes.string
 }
 
 export default WsbRoute;

@@ -9,6 +9,7 @@
     "mdbreact": "^4.9.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-pro-sidebar": "^0.4.4",
     "react-router-dom": "5.2.0",
     "react-scripts": "2.1.3"
   },
