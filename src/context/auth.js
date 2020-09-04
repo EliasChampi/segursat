@@ -9,8 +9,7 @@ export const AuthProvider = ({ children }) => {
       setUser(AuthService.getCurrentUser());
     }
   }, []);
-  //const isAuthenticated = Object.keys(user).length > 0 && user.accessToken !== "";
-  const isAuthenticated = Object.keys(user).length;
+  const isAuthenticated = Object.keys(user).length > 0 && user.accessToken !== "";
 
   return (
     <AuthContext.Provider

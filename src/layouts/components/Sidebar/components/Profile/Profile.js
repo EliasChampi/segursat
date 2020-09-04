@@ -3,10 +3,11 @@ import { Link as RouterLink } from "react-router-dom";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/styles";
-import { Avatar, Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 
 import { AuthContext } from "context/auth";
-import { IMAGE } from "constants/global";
+import { UserImage } from "components";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,17 +34,12 @@ const Profile = (props) => {
   const { user } = useContext(AuthContext);
   return (
     <div {...rest} className={clsx(classes.root, className)}>
-      <Avatar
-        alt="Person"
-        className={classes.avatar}
-        component={RouterLink}
-        src={IMAGE}
-        to="/mis-datos"
-      />
-      <Typography variant="h4">{user.username}</Typography>
-      <Typography variant="subtitle2" className={classes.upper}>
-        {user.mode}
+      <UserImage className={classes.avatar} user={user.name} />
+      <Typography variant="h4" className={classes.upper}>{user.username}</Typography>
+      <Typography variant="subtitle2">
+        {user.name || user.is_staff ? 'Admin' : 'Usuario'}
       </Typography>
+      <Button color="secondary" component={RouterLink} to="/me">ver perfil</Button>
     </div>
   );
 };

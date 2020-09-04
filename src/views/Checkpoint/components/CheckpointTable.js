@@ -11,25 +11,33 @@ import {
     TablePagination,
     LinearProgress
 } from "@material-ui/core";
-import { Create as CreateIcon } from "@material-ui/icons";
+import { Map as MapIcon } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import { yourdate } from "common/decorator";
 import { Pagination } from "components";
-const DriverTable = (props) => {
-    const { paginated, count, rowsPerPage, page, handleChangePage, handleChangeRowsPerPage, loading } = props;
+const CheckpointTable = (props) => {
+
+    const {
+        paginated,
+        count,
+        rowsPerPage,
+        page,
+        handleChangePage,
+        handleChangeRowsPerPage,
+        onShowMap,
+        loading } = props;
+
     // const emptyRows = rowsPerPage - Math.min(rowsPerPage, count - page * rowsPerPage);
     return (
         <TableContainer>
             <Table aria-label="my table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>DNI</TableCell>
                         <TableCell component="th">Nombre</TableCell>
-                        <TableCell component="th">Apellidos</TableCell>
-                        <TableCell component="th">Licencia</TableCell>
                         <TableCell component="th">Usuario</TableCell>
                         <TableCell component="th">Fecha de Creación</TableCell>
-                        <TableCell component="th">Acciones</TableCell>
+                        <TableCell component="th">Fecha de Modificación</TableCell>
+                        <TableCell component="th">Mapa</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -37,21 +45,19 @@ const DriverTable = (props) => {
                         <TableCell colSpan="6"> <LinearProgress /></TableCell>
                     </TableRow>}
                     {paginated.map((row) => (
-                        <TableRow key={row.dni}>
+                        <TableRow key={row.created}>
                             <TableCell component="th" scope="row">
-                                {row.dni}
+                                {row.name}
                             </TableCell>
-                            <TableCell>{row.firstname}</TableCell>
-                            <TableCell>{row.lastname}</TableCell>
-                            <TableCell>{row.license_number}</TableCell>
                             <TableCell>{row.username}</TableCell>
                             <TableCell>{yourdate(row.created)}</TableCell>
+                            <TableCell>{yourdate(row.modified)}</TableCell>
                             <TableCell>
                                 <Button
                                     size="small"
-                                    disabled
+                                    onClick={() => onShowMap(row.name)}
                                 >
-                                    <CreateIcon />
+                                    <MapIcon />
                                 </Button>
                             </TableCell>
                         </TableRow>
@@ -65,7 +71,7 @@ const DriverTable = (props) => {
                 <TableFooter>
                     <TableRow>
                         <TablePagination
-                            labelRowsPerPage="conductores por pag. :"
+                            labelRowsPerPage="checkpoints por pag. :"
                             rowsPerPageOptions={[10, 20, 50, { label: 'Todo', value: -1 }]}
                             colSpan={7}
                             count={count}
@@ -86,7 +92,7 @@ const DriverTable = (props) => {
     )
 }
 
-DriverTable.propTypes = {
+CheckpointTable.propTypes = {
     loading: PropTypes.bool,
     paginated: PropTypes.array.isRequired,
     count: PropTypes.number.isRequired,
@@ -94,6 +100,7 @@ DriverTable.propTypes = {
     page: PropTypes.number.isRequired,
     handleChangePage: PropTypes.func.isRequired,
     handleChangeRowsPerPage: PropTypes.func.isRequired,
+    onShowMap: PropTypes.func.isRequired,
 }
 
-export default DriverTable;
+export default CheckpointTable;

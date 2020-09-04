@@ -1,12 +1,12 @@
 import React from 'react'
-import { Page } from 'components';
+import { Page, Empty } from 'components';
 
 
 const Dashboard = props => {
 
     return (
         <Page>
-            <div>Dashboard</div>
+            <Empty/>
         </Page>
     )
 }

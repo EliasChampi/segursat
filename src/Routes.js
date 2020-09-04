@@ -6,55 +6,48 @@ import { ProtectedRoute, PublicRoute } from "./components";
 import * as v from "./views";
 
 const Routes = () => {
-  const { isAuthed, user } = useContext(AuthContext);
+  const { isAuthed } = useContext(AuthContext);
 
   return (
     <Switch>
-      <ProtectedRoute path='/' exact component={v.Dashboard} isAuthed={isAuthed} />
       <ProtectedRoute
-        path="/dashboard"
-        component={v.Dashboard}
-        title="Dashboard"
-        isAuthed={isAuthed}
-      />
-      <ProtectedRoute
+        exact
         path="/events"
         component={v.Event}
         title="Últimos eventos"
         isAuthed={isAuthed}
       />
       <ProtectedRoute
+        exact
         path="/history-events"
         component={v.History}
         title="Histórico"
         isAuthed={isAuthed}
       />
       <ProtectedRoute
+        exact
         path="/checkpoint"
         component={v.Checkpoint}
         title="Checkpoint"
         isAuthed={isAuthed}
       />
       <ProtectedRoute
+        exact
         path="/drivers"
         component={v.Driver}
         title="Conductores"
         isAuthed={isAuthed}
       />
       <ProtectedRoute
+        exact
         path="/units"
         component={v.Unit}
         title="Unidades"
         isAuthed={isAuthed}
       />
-      <ProtectedRoute
-        path="/about"
-        component={v.About}
-        title="Acerca de"
-        isAuthed={isAuthed}
-      />
 
       <ProtectedRoute
+        exact
         path="/me"
         component={v.Account}
         title="Mi perfil"
@@ -62,23 +55,32 @@ const Routes = () => {
       />
 
       <PublicRoute
+        exact
         path="/login"
         component={v.Login}
         isAuthed={isAuthed}
       />
       <PublicRoute
+        exact
         path="/recuperar"
         component={v.Recover}
         isAuthed={isAuthed}
       />
 
-      <PublicRoute
-        component={v.NotFound}
+      <ProtectedRoute
+        path="/dashboard"
+        component={v.Dashboard}
+        title="Dashboard"
         isAuthed={isAuthed}
-        path="/desconocido"
       />
 
-      <Redirect to="/desconocido" />
+      <Redirect from="/" to="/events" />
+
+      <Redirect from="*" to="/desconocido" />
+
+      <PublicRoute
+        component={v.NotFound}
+      />
     </Switch>
   );
 };

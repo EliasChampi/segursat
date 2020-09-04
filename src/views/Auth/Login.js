@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import {
   Button,
   TextField,
 } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "context/consumer";
+import { AuthContext, ToastContext } from "context/consumer";
 import { Container } from "./components";
-import cache from "helpers/cache";
+import authApi from "service/auth";
 const useStyles = makeStyles((theme) => ({
   textField: {
     marginTop: theme.spacing(2),
@@ -22,17 +22,22 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = ({ history }) => {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
   const { setUser } = useContext(AuthContext);
+  const { show } = useContext(ToastContext);
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmitForm = (data) => {
-    setTimeout(() => {
-      // borrar.
-      cache.setItem("user", data)
-      setUser(data);
-      console.log(data);
-      history.push("/");
-    }, 1000);
+    setLoading(true);
+    authApi.login(data).then(r => {
+      show("¡Bienvenido!", "success")
+      setTimeout(() => {
+        setUser(r);
+        history.push("/events");
+      }, 1000);
+    }).catch(err => {
+      show("Contraseña incorrecta", "error")
+    })
   };
 
   return (
@@ -79,6 +84,7 @@ const Login = ({ history }) => {
         <Button
           className={classes.signInButton}
           color="primary"
+          disabled={loading}
           fullWidth
           size="large"
           type="submit"

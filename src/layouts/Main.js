@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Main = (props) => {
-  const { children, title, history } = props;
+  const { children, title } = props;
 
   const classes = useStyles();
   const theme = useTheme();

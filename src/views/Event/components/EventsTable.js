@@ -1,9 +1,9 @@
 import React from "react"
-import { TableContainer, TableHead, TableRow, TableCell, TableBody, Button, Table } from "@material-ui/core";
+import { TableContainer, TableHead, TableRow, TableCell, TableBody, Button, Table, LinearProgress } from "@material-ui/core";
 import { VisibilityRounded } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import { yourdate } from "common/decorator";
-const EventsTable = ({ data }) => {
+const EventsTable = ({ data, loading, onDetailClick }) => {
     return (
         <TableContainer>
             <Table aria-label="simple table">
@@ -14,24 +14,28 @@ const EventsTable = ({ data }) => {
                         <TableCell component="th">Tipo de Servicio</TableCell>
                         <TableCell component="th">Nombre del Conductor</TableCell>
                         <TableCell component="th">Fecha de Creacion</TableCell>
-                        <TableCell component="th">Acciones</TableCell>
+                        <TableCell component="th">Ver Detalle</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
+                    {loading && <TableRow >
+                        <TableCell colSpan="6"> <LinearProgress /></TableCell>
+                    </TableRow>}
                     {data.map((row) => (
                         <TableRow key={row.id}>
+
                             <TableCell component="th" scope="row">
                                 {row.unitid}
                             </TableCell>
                             <TableCell>{row.logistic_operator}</TableCell>
                             <TableCell>{row.type_of_service}</TableCell>
                             <TableCell>{row.driver_fullname}</TableCell>
-                            <TableCell>{yourdate(row.datetime, "[a las] hh:mm a")}</TableCell>
+                            <TableCell>{yourdate(row.datetime)}</TableCell>
                             <TableCell>
                                 <Button
                                     color="secondary"
                                     size="small"
-
+                                    onClick={() => onDetailClick(row)}
                                 >
                                     <VisibilityRounded />
                                 </Button>
@@ -46,6 +50,8 @@ const EventsTable = ({ data }) => {
 
 EventsTable.propTypes = {
     data: PropTypes.array.isRequired,
+    loading: PropTypes.bool,
+    onDetailClick: PropTypes.func
 }
 
 export default EventsTable;

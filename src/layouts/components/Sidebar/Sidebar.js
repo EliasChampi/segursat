@@ -9,7 +9,6 @@ import TimelineIcon from '@material-ui/icons/Timeline';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import PeopleIcon from '@material-ui/icons/People';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
-import SettingsIcon from "@material-ui/icons/Settings";
 
 import { Profile, SidebarNav } from "./components";
 
@@ -77,17 +76,11 @@ const Sidebar = ({ open, variant, onClose, className, handleSignOut, ...rest }) 
       href: "/units",
       icon: <DriveEtaIcon />,
     },
-    {
-      title: "Acerca de",
-      href: "/about",
-      icon: <SettingsIcon />,
-    },
   ];
 
   return (
     <Drawer
       anchor="left"
-      elevation={30}
       classes={{ paper: classes.drawer }}
       onClose={onClose}
       open={open}

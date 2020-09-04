@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchInput = props => {
-  const { className, onChange, style, ...rest } = props;
+  const { className, onChange, style, placeholder, ...rest } = props;
   const classes = useStyles();
 
   return (
@@ -34,7 +34,7 @@ const SearchInput = props => {
       <SearchIcon className={classes.icon} />
       <Input
         {...rest}
-        placeholder="buscar"
+        placeholder={placeholder}
         className={classes.input}
         disableUnderline
         onChange={onChange}
@@ -43,9 +43,14 @@ const SearchInput = props => {
   );
 };
 
+SearchInput.defaultProps = {
+  placeholder: "Buscar",
+}
+
 SearchInput.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
+  placeholder: PropTypes.string,
   style: PropTypes.object
 };
 

@@ -1,10 +1,17 @@
 import axios from "axios";
 import cache from "../helpers/cache";
+import { API as BASE_API } from "constants/global";
+
+/**
+ * main api config
+ * @author {eliaschampi04}
+ */
+
 /**
  * creating a new axios instance
  */
 const request = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: BASE_API,
   timeout: 100000,
 });
 
@@ -14,7 +21,7 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     if (cache.hasThis("user")) {
-      config.headers["x-access-token"] = cache.getItem("user").token;
+      config.headers["Authorization"] = "JWT " + cache.getItem("user").token;
     }
     return config;
   },
@@ -31,14 +38,17 @@ request.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.log(error)
     let errData = {
       message: "No tienes conexion a Internet",
     };
     if (error.response) {
       errData = error.response.data;
+      
       switch (error.response.status) {
         case 401:
           cache.removeItem("user");
+          //window.location.reload();
           break;
         default:
           break;

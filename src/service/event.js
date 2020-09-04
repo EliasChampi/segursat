@@ -1,9 +1,9 @@
-import axios from "axios";
-import { API } from "constants/global";
+import request from "./request";
+const sub = "/control/web/api/";
 class Event {
     fetchData() {
         return new Promise((resolve, reject) => {
-            axios.get(API + "get-events/").then(r => {
+            request.get(sub + "get-events/").then(r => {
                 resolve(r.data)
             }).catch(err => reject(err))
         })

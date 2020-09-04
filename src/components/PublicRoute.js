@@ -8,11 +8,15 @@ const PublicRoute = props => {
     <Route
       {...rest}
       render={matchProps =>
-        !isAuthed ? <Component {...matchProps} /> : <Redirect to="/dashboard" />
+        !isAuthed ? <Component {...matchProps} /> : <Redirect to="/events" />
       }
     />
   );
 };
+
+PublicRoute.defaultProps = {
+  isAuthed: false
+}
 
 PublicRoute.propTypes = {
   component: PropTypes.any.isRequired,

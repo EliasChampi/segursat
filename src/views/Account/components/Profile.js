@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
@@ -12,8 +12,6 @@ import {
   Button,
   LinearProgress,
 } from "@material-ui/core";
-
-import { AuthContext } from "context/auth";
 import { IMAGE } from "constants/global";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Profile = ({ className, ...rest }) => {
-  const { user } = useContext(AuthContext);
+const Profile = ({ user, className, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -60,7 +57,7 @@ const Profile = ({ className, ...rest }) => {
               color="textSecondary"
               variant="body1"
             >
-              ROL: {user.mode}
+              ROL: {user.is_staff ? 'Admin' : 'Usuario'}
             </Typography>
           </div>
           <Avatar
@@ -84,6 +81,7 @@ const Profile = ({ className, ...rest }) => {
 };
 
 Profile.propTypes = {
+  user: PropTypes.object,
   className: PropTypes.string,
 };
 
