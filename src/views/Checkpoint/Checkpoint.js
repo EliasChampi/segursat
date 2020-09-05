@@ -49,7 +49,7 @@ const Checkpoint = (props) => {
     }
 
     const New = (
-        <Button variant="contained" onClick={handleCreateMap} color="primary" startIcon={<AddCircleIcon />}>Crear Checkpoint</Button>
+        <Button disabled={!user.is_staff} variant="contained" onClick={handleCreateMap} color="primary" startIcon={<AddCircleIcon />}>Crear Checkpoint</Button>
     )
 
     return (

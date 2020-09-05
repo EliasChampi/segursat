@@ -96,7 +96,7 @@ const History = () => {
 
   return (
     <Page>
-      <Header subtitle="Historicos" title="" RightButton={Export} />
+      <Header subtitle="Históricos" title="" RightButton={Export} />
       <Card>
         <CardContent>
           <Grid container spacing={3} className={classes.card} >

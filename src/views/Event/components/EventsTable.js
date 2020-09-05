@@ -14,7 +14,7 @@ const EventsTable = ({ data, loading, onDetailClick }) => {
                         <TableCell component="th">Operador Logístico</TableCell>
                         <TableCell component="th">Tipo de Servicio</TableCell>
                         <TableCell component="th">Nombre del Conductor</TableCell>
-                        <TableCell component="th">Fecha de Creacion</TableCell>
+                        <TableCell component="th">Fecha de Creación</TableCell>
                         <TableCell component="th">Ver Detalle</TableCell>
                     </TableRow>
                 </TableHead>
