@@ -48,7 +48,7 @@ request.interceptors.response.use(
       switch (error.response.status) {
         case 401:
           cache.removeItem("user");
-          //window.location.reload();
+          window.location.reload();
           break;
         default:
           break;

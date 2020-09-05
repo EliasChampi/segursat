@@ -44,11 +44,7 @@ export default function withPagination(WrapedComponent, fetchService, finds) {
                 fetchService().then(data => {
                     if (mounted) {
                         setLoading(false)
-<<<<<<< HEAD
-                        console.log(loading)
-=======
                         //console.log(loading)
->>>>>>> first changes
                         setData(data);
                     }
                 })

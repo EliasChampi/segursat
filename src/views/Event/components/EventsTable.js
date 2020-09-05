@@ -9,6 +9,7 @@ const EventsTable = ({ data, loading, onDetailClick }) => {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
+                        <TableCell>Proveedor</TableCell>
                         <TableCell>Placa</TableCell>
                         <TableCell component="th">Operador Logístico</TableCell>
                         <TableCell component="th">Tipo de Servicio</TableCell>
@@ -19,11 +20,13 @@ const EventsTable = ({ data, loading, onDetailClick }) => {
                 </TableHead>
                 <TableBody>
                     {loading && <TableRow >
-                        <TableCell colSpan="6"> <LinearProgress /></TableCell>
+                        <TableCell colSpan="7"> <LinearProgress /></TableCell>
                     </TableRow>}
                     {data.map((row) => (
                         <TableRow key={row.id}>
-
+                            <TableCell component="th" scope="row">
+                                {row.provider}
+                            </TableCell>
                             <TableCell component="th" scope="row">
                                 {row.unitid}
                             </TableCell>
