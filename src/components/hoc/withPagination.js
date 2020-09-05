@@ -12,9 +12,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 /**
  * @Author @eliaschampi04
+<<<<<<< HEAD
  * @param {Component} WrapedComponent 
  * @param {Function} fetchService 
  * @param {Array} finds 
+=======
+ * @param {Component} WrapedComponent
+ * @param {Function} fetchService
+ * @param {Array} finds
+>>>>>>> first changes
  */
 export default function withPagination(WrapedComponent, fetchService, finds) {
 
@@ -38,7 +44,11 @@ export default function withPagination(WrapedComponent, fetchService, finds) {
                 fetchService().then(data => {
                     if (mounted) {
                         setLoading(false)
+<<<<<<< HEAD
                         console.log(loading)
+=======
+                        //console.log(loading)
+>>>>>>> first changes
                         setData(data);
                     }
                 })
