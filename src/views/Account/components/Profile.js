@@ -46,6 +46,7 @@ const Profile = ({ user, className, ...rest }) => {
               {user.username}
             </Typography>
             <Typography
+<<<<<<< HEAD
               className={classes.locationText}
               color="textSecondary"
               variant="body1"
@@ -53,6 +54,8 @@ const Profile = ({ user, className, ...rest }) => {
               DNI: {user.dni}
             </Typography>
             <Typography
+=======
+>>>>>>> first changes
               className={classes.dateText}
               color="textSecondary"
               variant="body1"

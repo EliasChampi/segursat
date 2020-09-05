@@ -27,8 +27,19 @@ const Checkpoint = (props) => {
         classes } = props;
 
     const Export = (
-        <Button disabled={!user.is_staff} variant="contained" onClick={() => handleShowMap("Nuevo")} color="primary" startIcon={<AddCircleIcon />}>Crear Checkpoint</Button>
+        <Button disabled={!user.is_staff} variant="contained" onClick={() => handleCreateMap()} color="primary" startIcon={<AddCircleIcon />}>Crear Checkpoint</Button>
     )
+
+    const handleCreateMap = () => {
+        const token = user.token;
+        let mapUrl = "";
+        if (!modal) {
+            mapUrl = `${API}/api/create-checkpoint/${token}`;
+            setSelected('Crear Checkpoint');
+        }
+        setMapUrl(mapUrl);
+        setModal(!modal);
+    }
 
     const handleShowMap = (name = "") => {
         const token = user.token;

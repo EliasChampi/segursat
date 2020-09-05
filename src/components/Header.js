@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
   mb: {
     marginBottom: theme.spacing(2),
   },
+  pt: {
+    paddingTop : theme.spacing(1),
+  }
 }));
 
 const Header = ({ title, subtitle, RightButton }) => {
@@ -23,7 +26,7 @@ const Header = ({ title, subtitle, RightButton }) => {
         <Typography variant="overline" component="h2">
           {title}
         </Typography>
-        <Typography variant="h4">{subtitle}</Typography>
+        <Typography variant="h4" className={classes.pt}>{subtitle}</Typography>
       </Grid>
       <Grid item>{RightButton}</Grid>
     </Grid>

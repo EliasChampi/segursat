@@ -23,7 +23,15 @@ const useStyles = makeStyles((theme) => ({
   },
   upper: {
     textTransform: "uppercase",
+<<<<<<< HEAD
   },
+=======
+    paddingTop : "10px"
+  },
+  pt : {
+    paddingTop : "7px"
+  }
+>>>>>>> first changes
 }));
 
 const Profile = (props) => {
@@ -34,9 +42,15 @@ const Profile = (props) => {
   const { user } = useContext(AuthContext);
   return (
     <div {...rest} className={clsx(classes.root, className)}>
+<<<<<<< HEAD
       <UserImage className={classes.avatar} user={user.name} />
       <Typography variant="h4" className={classes.upper}>{user.username}</Typography>
       <Typography variant="subtitle2">
+=======
+      <UserImage className={classes.avatar} user={user.name}/>
+      <Typography variant="h4" className={classes.upper}>{user.username}</Typography>
+      <Typography variant="subtitle2" className={classes.pt}>
+>>>>>>> first changes
         {user.name || user.is_staff ? 'Admin' : 'Usuario'}
       </Typography>
       <Button color="secondary" component={RouterLink} to="/me">ver perfil</Button>
