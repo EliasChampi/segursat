@@ -6,10 +6,6 @@ import { makeStyles } from "@material-ui/styles";
 import {
   AppBar,
   Toolbar,
-<<<<<<< HEAD
-  Badge,
-=======
->>>>>>> first changes
   Hidden,
   IconButton,
   Menu,
@@ -17,11 +13,7 @@ import {
   Button,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-<<<<<<< HEAD
-import NotificationsIcon from "@material-ui/icons/NotificationsActive";
-=======
 /* import NotificationsIcon from "@material-ui/icons/NotificationsActive"; */
->>>>>>> first changes
 import AccountIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,11 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Topbar = (props) => {
   const { className, onSidebarOpen, handleSignOut, user, history, ...rest } = props;
   const classes = useStyles();
-<<<<<<< HEAD
-  const [notifications] = useState([]);
-=======
   /* const [notifications] = useState([]); */
->>>>>>> first changes
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -63,18 +51,6 @@ const Topbar = (props) => {
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
-<<<<<<< HEAD
-          <IconButton color="inherit">
-            <Badge
-              badgeContent={notifications.length}
-              color="primary"
-              variant="dot"
-            >
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-=======
->>>>>>> first changes
           <Button
             variant="text"
             color="inherit"
@@ -95,15 +71,9 @@ const Topbar = (props) => {
             <MenuItem component={RouterLink} to="/me" >
               Mi Perfil
             </MenuItem>
-<<<<<<< HEAD
-            <MenuItem component={RouterLink} to="/about" >
-              Acerca de
-            </MenuItem>
-=======
             {/* <MenuItem component={RouterLink} to="/about" >
               Acerca de
             </MenuItem> */}
->>>>>>> first changes
             <MenuItem onClick={handleSignOut}>Cerrar Session</MenuItem>
           </Menu>
         </Hidden>

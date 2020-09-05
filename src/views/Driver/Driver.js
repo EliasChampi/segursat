@@ -2,11 +2,7 @@ import React from 'react';
 import { Card, CardContent, Button, Grid, Divider } from '@material-ui/core';
 import { Page, Header, SearchInput, withPagination } from 'components';
 import driverApi from 'service/driver';
-<<<<<<< HEAD
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-=======
 /* import CloudDownloadIcon from '@material-ui/icons/CloudDownload';*/
->>>>>>> first changes
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import DriverTable from './components/DriverTable';
 
@@ -16,11 +12,7 @@ const Driver = (props) => {
 
     const Export = (
         <React.Fragment>
-<<<<<<< HEAD
-            <Button startIcon={<CloudDownloadIcon />} disabled>Imprimir</Button>
-=======
             {/* <Button startIcon={<CloudDownloadIcon />} disabled>Imprimir</Button> */}
->>>>>>> first changes
             <Button variant="contained" color="primary" startIcon={<AddCircleIcon />} disabled>Crear Conductor</Button>
         </React.Fragment>
     )

@@ -26,12 +26,8 @@ const Checkpoint = (props) => {
         handleSearchChange,
         classes } = props;
 
-    const Export = (
-        <Button disabled={!user.is_staff} variant="contained" onClick={() => handleCreateMap()} color="primary" startIcon={<AddCircleIcon />}>Crear Checkpoint</Button>
-    )
-
     const handleCreateMap = () => {
-        const token = user.token;
+        const { token } = user;
         let mapUrl = "";
         if (!modal) {
             mapUrl = `${API}/api/create-checkpoint/${token}`;
@@ -42,7 +38,7 @@ const Checkpoint = (props) => {
     }
 
     const handleShowMap = (name = "") => {
-        const token = user.token;
+        const { token } = user;
         let mapUrl = "";
         if (!modal) {
             mapUrl = `${API}/api/get-checkpoint/${name}/${token}`;
@@ -52,9 +48,13 @@ const Checkpoint = (props) => {
         setModal(!modal);
     }
 
+    const New = (
+        <Button disabled={!user.is_staff} variant="contained" onClick={handleCreateMap} color="primary" startIcon={<AddCircleIcon />}>Crear Checkpoint</Button>
+    )
+
     return (
         <Page>
-            <Header subtitle="Checkpoints" title="Listado general" RightButton={Export} />
+            <Header subtitle="Checkpoints" title="Listado general" RightButton={New} />
             <Card>
                 <CardContent>
                     <Grid container spacing={3} className={classes.card}>
