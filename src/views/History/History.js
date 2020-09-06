@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const History = () => {
   const classes = useStyles();
-  const [plate, setPlate] = useState(null);
+  const [plate, setPlate] = useState({});
   const [date, setDate] = useState(yourdateactual());
   const [loading, setLoading] = useState(false);
   const [finder, setFinder] = useState("");
@@ -37,20 +37,16 @@ const History = () => {
   const handlePlateChange = (e, newV) => setPlate(newV);
   const handleDateChange = ({ target }) => setDate(target.value);
 
-  const handleSearchClick = () => {
-    setLoading(true);
-    eventApi.search({ date, plate: plate.license_plate }).then(r => {
-      setEvents(r)
-      setLoading(false);
-    }).catch(err => console.log(err));
-  }
-
   useEffect(() => {
     let mounted = true
     const fetchUnits = () => {
-      unitApi.fetchData().then(r => {
+      unitApi.fetchData().then(res => {
         if (mounted) {
-          setUnits(r)
+          if (res !== null && res.length) {
+            setUnits([{ license_plate: 'Todo' }, ...res])
+          } else {
+            setUnits([])
+          }
         }
       }).catch(err => console.log(err))
     }
@@ -75,11 +71,17 @@ const History = () => {
     setModal(!modal);
   }
 
-  const Export = (<Button disabled startIcon={<CloudDownloadIcon />}>Imprimir</Button>)
-
-  const searchable = (plate !== null && Object.keys(plate).length) && date;
-
-  const filtered = events.filter(item => new RegExp(finder, "i").test(item.driver_fullname));
+  const handleSearchClick = () => {
+    setLoading(true);
+    let { license_plate: selected } = plate;
+    if (selected === "Todo") {
+      selected = "ALL"
+    }
+    eventApi.search({ date, plate: selected }).then(r => {
+      setEvents(r)
+      setLoading(false);
+    }).catch(err => console.log(err));
+  }
 
   const handleSearchChange = (event) => {
     setFinder(event.target.value);
@@ -94,9 +96,32 @@ const History = () => {
     }
   }
 
+  const printurl = () => {
+    if (!!plate) {
+      let { license_plate } = plate;
+      if (license_plate === "Todo") {
+        license_plate = "all"
+      }
+      return (`${API}/static/reports/report${date}${license_plate}.txt`).replace(/-/gi, "").toLowerCase()
+    }
+    return ""
+  }
+
+  const filtered = events.filter(item => new RegExp(finder, "i").test(item.driver_fullname));
+
+  const Print = (
+    <Button
+      type="submit"
+      disabled={!filtered.length}
+      onClick={() => window.open(printurl())}
+      startIcon={<CloudDownloadIcon />}>Imprimir</Button>
+  )
+
+  const searchable = (plate !== null && Object.keys(plate).length) && date;
+
   return (
     <Page>
-      <Header subtitle="Históricos" title="" RightButton={Export} />
+      <Header subtitle="Históricos de eventos" title="Reporte por placa y fecha de creación" RightButton={Print} />
       <Card>
         <CardContent>
           <Grid container spacing={3} className={classes.card} >

@@ -10,10 +10,11 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Proveedor</TableCell>
-            <TableCell>Placa</TableCell>
+            <TableCell component="th">Proveedor</TableCell>
             <TableCell component="th">Operador Logístico</TableCell>
+            <TableCell component="th">Placa</TableCell>
             <TableCell component="th">Tipo de Servicio</TableCell>
+            <TableCell component="th">Checkpoint</TableCell>
             <TableCell component="th">Nombre del Conductor</TableCell>
             <TableCell component="th">Fecha de Creación</TableCell>
             <TableCell component="th">Ver Detalle</TableCell>
@@ -21,14 +22,15 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
         </TableHead>
         <TableBody>
           {loading && <TableRow >
-            <TableCell colSpan="6"> <LinearProgress /></TableCell>
+            <TableCell colSpan="8"> <LinearProgress /></TableCell>
           </TableRow>}
           {events.map(event => (
             <TableRow key={event.id}>
               <TableCell component="th">{event.provider}</TableCell>
-              <TableCell>{event.unitid}</TableCell>
               <TableCell component="th">{event.logistic_operator}</TableCell>
+              <TableCell component="th">{event.unitid}</TableCell>
               <TableCell component="th">{event.type_of_service}</TableCell>
+              <TableCell component="th">{event.checkpoint}</TableCell>
               <TableCell component="th">{event.driver_fullname}</TableCell>
               <TableCell component="th">{yourdate(event.created)}</TableCell>
               <TableCell>

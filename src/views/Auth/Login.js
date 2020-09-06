@@ -30,7 +30,7 @@ const Login = ({ history }) => {
   const onSubmitForm = (data) => {
     setLoading(true);
     authApi.login(data).then(r => {
-      show("¡Bienvenido!", "success")
+      show("¡Bienvenido!")
       setTimeout(() => {
         setUser(r);
         history.push("/events");

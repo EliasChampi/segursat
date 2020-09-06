@@ -7,12 +7,28 @@ import {
   Button,
   DialogActions,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  header: {
+    backgroundColor: theme.palette.primary.main
+  },
+  padding: {
+    padding: theme.spacing(5),
+    [theme.breakpoints.up('md')]: {
+      overflow: 'hidden'
+    },
+
+  }
+}))
 
 const nop = () => {
   // this is nop :)
 }
 
 const Modal = ({ open, close, title, children, handleConfirm, fullWidth, closeButton, maxWidth }) => {
+
+  const classes = useStyles();
   return (
     <Dialog
       fullWidth={fullWidth}
@@ -22,8 +38,8 @@ const Modal = ({ open, close, title, children, handleConfirm, fullWidth, closeBu
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
-      <DialogContent>{children}</DialogContent>
+      <DialogTitle id="alert-dialog-title" className={classes.header}>{title}</DialogTitle>
+      <DialogContent className={classes.padding}>{children}</DialogContent>
       <DialogActions>
         {closeButton && <Button onClick={close} color="secondary">
           Cancelar

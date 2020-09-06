@@ -34,7 +34,7 @@ const DriverTable = (props) => {
                 </TableHead>
                 <TableBody>
                     {loading && <TableRow >
-                        <TableCell colSpan="6"> <LinearProgress /></TableCell>
+                        <TableCell colSpan="7"> <LinearProgress /></TableCell>
                     </TableRow>}
                     {paginated.map((row) => (
                         <TableRow key={row.dni}>
